@@ -1,0 +1,39 @@
+---
+  - name: Pull and run flask image
+    hosts: all
+    tasks:
+      - name: Pull flask image
+        docker_image:
+          name: hargovind04/spe_flask:latest
+          source: pull
+
+      - name: Running flask image
+        docker_container:
+          name: flask
+          image: hargovind04/spe_flask:latest
+          state: started
+          restart_policy: always
+          env: 
+            APP_NAME: "app"
+          exposed_ports:
+            - 8080
+
+  - name: Pull and run nginx image
+    hosts: all
+    tasks:
+      - name: Pull nginx image
+        docker_image:
+          name: hargovind04/spe_nginx:latest
+          source: pull
+
+      - name: Running nginx image
+        docker_container:
+          name: nginx
+          image: hargovind04/spe_nginx:latest
+          state: started
+          restart_policy: always
+          ports:
+            - "80:80"
+
+  
+      
