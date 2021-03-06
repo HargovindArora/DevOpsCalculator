@@ -1,24 +1,4 @@
----
-- name: Pull and run nginx image
-  hosts: all
-  remote_user: azureuser
-  tasks:
-    - name: Pull nginx image
-      docker_image:
-        name: hargovind04/spe_nginx:latest
-        source: pull
-
-    - name: Running nginx image
-      docker_container:
-        name: nginx
-        image: hargovind04/spe_nginx:latest
-        state: started
-        restart: yes
-        links: 
-          - "flask:flask"
-        ports:
-          - "80:80"
-      
+---     
 - name: Pull and run flask image
   hosts: all
   remote_user: azureuser
@@ -38,3 +18,23 @@
           APP_NAME: "app"
         exposed_ports:
           - "8080"
+
+- name: Pull and run nginx image
+  hosts: all
+  remote_user: azureuser
+  tasks:
+    - name: Pull nginx image
+      docker_image:
+        name: hargovind04/spe_nginx:latest
+        source: pull
+
+    - name: Running nginx image
+      docker_container:
+        name: nginx
+        image: hargovind04/spe_nginx:latest
+        state: started
+        restart: yes
+        links: 
+          - "flask:flask"
+        ports:
+          - "80:80"
