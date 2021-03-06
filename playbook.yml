@@ -14,6 +14,7 @@
         image: hargovind04/spe_flask:latest
         state: started
         restart: yes
+        restart_policy : always
         env: 
           APP_NAME: "app"
         exposed_ports:
@@ -34,6 +35,7 @@
         image: hargovind04/spe_nginx:latest
         state: started
         restart: yes
+        restart_policy : always
         links: 
           - "flask:flask"
         ports:
