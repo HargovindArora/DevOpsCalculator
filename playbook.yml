@@ -1,4 +1,10 @@
 ---
+  - name: Create a network
+    hosts: all
+    remote_user: azureuser
+    docker_network:
+      name: my-network
+
   - name: Pull and run flask image
     hosts: all
     remote_user: azureuser
