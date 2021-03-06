@@ -13,8 +13,15 @@
           name: flask
           image: hargovind04/spe_flask:latest
           state: started
+          restart: yes
           env: 
             APP_NAME: "app"
+          networks:
+            - name: my-network
+              aliases:
+                - flask-app
+              links:
+                - nginx
           exposed_ports:
             - "8080"
 
@@ -32,6 +39,9 @@
           name: nginx
           image: hargovind04/spe_nginx:latest
           state: started
+          restart: yes
+          networks:
+            - name: my-network
           ports:
             - "80:80"
 
