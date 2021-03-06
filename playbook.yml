@@ -1,55 +1,40 @@
 ---
-  - name: Create a network
-    hosts: all
-    remote_user: azureuser
-    docker_network:
-      name: my-network
+- name: Pull and run nginx image
+  hosts: all
+  remote_user: azureuser
+  tasks:
+    - name: Pull nginx image
+      docker_image:
+        name: hargovind04/spe_nginx:latest
+        source: pull
 
-  - name: Pull and run flask image
-    hosts: all
-    remote_user: azureuser
-    tasks:
-      - name: Pull flask image
-        docker_image:
-          name: hargovind04/spe_flask:latest
-          source: pull
-
-      - name: Running flask image
-        docker_container:
-          name: flask
-          image: hargovind04/spe_flask:latest
-          state: started
-          restart: yes
-          env: 
-            APP_NAME: "app"
-          networks:
-            - name: my-network
-              aliases:
-                - flask-app
-              links:
-                - nginx
-          exposed_ports:
-            - "8080"
-
-  - name: Pull and run nginx image
-    hosts: all
-    remote_user: azureuser
-    tasks:
-      - name: Pull nginx image
-        docker_image:
-          name: hargovind04/spe_nginx:latest
-          source: pull
-
-      - name: Running nginx image
-        docker_container:
-          name: nginx
-          image: hargovind04/spe_nginx:latest
-          state: started
-          restart: yes
-          networks:
-            - name: my-network
-          ports:
-            - "80:80"
-
-  
+    - name: Running nginx image
+      docker_container:
+        name: nginx
+        image: hargovind04/spe_nginx:latest
+        state: started
+        restart: yes
+        links: 
+          - "flask:flask"
+        ports:
+          - "80:80"
       
+- name: Pull and run flask image
+  hosts: all
+  remote_user: azureuser
+  tasks:
+    - name: Pull flask image
+      docker_image:
+        name: hargovind04/spe_flask:latest
+        source: pull
+
+    - name: Running flask image
+      docker_container:
+        name: flask
+        image: hargovind04/spe_flask:latest
+        state: started
+        restart: yes
+        env: 
+          APP_NAME: "app"
+        exposed_ports:
+          - "8080"
