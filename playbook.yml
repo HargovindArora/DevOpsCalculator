@@ -13,11 +13,10 @@
           name: flask
           image: hargovind04/spe_flask:latest
           state: started
-          restart: yes
           env: 
             APP_NAME: "app"
           exposed_ports:
-            - 8080
+            - "8080"
 
   - name: Pull and run nginx image
     hosts: all
@@ -33,7 +32,6 @@
           name: nginx
           image: hargovind04/spe_nginx:latest
           state: started
-          restart: yes
           ports:
             - "80:80"
 
