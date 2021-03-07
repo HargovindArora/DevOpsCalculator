@@ -7,25 +7,61 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="/root"><h2>Calculate Root</h2></a>
+            <h2>Calculate Root</h2>
+            <form action="/root" method="post">
+
+                <div class="form-group">
+                    <label for="">Enter a Number</label>
+                    <input type="number" class="form-control" name="root_number">
+                </div>
+
+            </form>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col">
-            <a href="/factorial"><h2>Calculate Facotrial</h2></a>
+            <h2>Calculate Facotrial</h2>
+            <form action="/factorial" method="post">
+
+                <div class="form-group">
+                    <label for="">Enter a Number</label>
+                    <input type="number" class="form-control" name="fact_number">
+                </div>
+
+            </form>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col">
-            <a href="/log"><h2>Calculate Natural Logarithm</h2></a>
+            <h2>Calculate Natural Logarithm</h2>
+            <form action="/log" method="post">
+
+                <div class="form-group">
+                    <label for="">Enter a Number</label>
+                    <input type="number" class="form-control" name="log_number">
+                </div>
+
+            </form>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col">
-            <a href="/power"><h2>Calculate Power</h2></a>
+            <h2>Calculate Power</h2>
+            <form action="/power" method="post">
+
+                <div class="form-group">
+                    <label for="">Enter a Number</label>
+                    <input type="number" class="form-control" name="number">
+                    <label for="">Enter a Number to raise to a power</label>
+                    <input type="number" class="form-control" name="power">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="margin-top: 0.5cm; margin-bottom: 1cm">Calculate Power</button>
+
+            </form>
         </div>
     </div>
 </div>
