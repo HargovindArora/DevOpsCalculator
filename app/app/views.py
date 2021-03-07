@@ -35,6 +35,8 @@ def root():
                 app.logger.info(f"Square root of {x} is {answer}")
                 flash(f"{answer} is the square root of {x}", "success")
                 return redirect(request.url)
+
+
         except ValueError:
             app.logger.error("Improper form submission")
             flash("Please fill the form correctly", "warning")
@@ -65,6 +67,8 @@ def factorial():
                 app.logger.info(f"Factorial of {x} is {answer}")
                 flash(f"{answer} is the Factorial of {x}", "success")
                 return redirect(request.url)
+
+
         except ValueError:
             app.logger.error("Improper form submission")
             flash("Please fill the form correctly", "warning")
@@ -95,6 +99,8 @@ def log():
                 app.logger.info(f"Natural logarithm of {x} is {answer}")
                 flash(f"{answer} is the Natural logarithm of {x}", "success")
                 return redirect(request.url)
+
+
         except ValueError:
             app.logger.error("Improper form submission")
             flash("Please fill the form correctly", "warning")
@@ -120,6 +126,7 @@ def power():
             app.logger.info(f"Power of {x} raised to {y} is {answer}")
             flash(f"Power of {x} raised to {y} is {answer}", "success")
             return redirect(request.url)
+            
 
         except ValueError:
             app.logger.error("Improper form submission")

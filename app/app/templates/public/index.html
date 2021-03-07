@@ -1,13 +1,13 @@
 {% extends "public/templates/public_template.html" %}
 
-{% block title %} Calculator {% endblock %}
+{% block title %} Scientific Calculator {% endblock %}
 
 {% block main %}
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>Calculate Root</h2>
+            <h2>Calculate Square Root</h2>
             <form action="/root" method="post">
 
                 <div class="form-group">
@@ -15,19 +15,23 @@
                     <input type="number" class="form-control" name="root_number">
                 </div>
 
+                <button type="submit" class="btn btn-primary" style="margin-top: 0.5cm; margin-bottom: 1cm">Calculate Root</button>
+
             </form>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col">
-            <h2>Calculate Facotrial</h2>
+            <h2>Calculate Factorial</h2>
             <form action="/factorial" method="post">
 
                 <div class="form-group">
                     <label for="">Enter a Number</label>
                     <input type="number" class="form-control" name="fact_number">
                 </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 0.5cm; margin-bottom: 1cm">Calculate Factorial</button>
 
             </form>
         </div>
@@ -42,6 +46,8 @@
                     <label for="">Enter a Number</label>
                     <input type="number" class="form-control" name="log_number">
                 </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 0.5cm; margin-bottom: 1cm">Calculate Log</button>
 
             </form>
         </div>
