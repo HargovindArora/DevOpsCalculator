@@ -1,6 +1,7 @@
 import json
 import flask
 
+
 def test_index_route(app, client):
     res = client.get("/")
     assert res.status_code == 200
@@ -14,7 +15,6 @@ def test_root_route(app, client):
 def test_factorial_route(app, client):
     res = client.get("/factorial")
     assert res.status_code == 200
-
 
 
 def test_log_route(app, client):
