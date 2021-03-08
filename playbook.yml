@@ -1,7 +1,7 @@
 ---     
 - name: Pull and run flask image
   hosts: all
-  remote_user: hargovind
+  remote_user: azureuser
   tasks:
     - name: Pull flask image
       docker_image:
@@ -22,7 +22,7 @@
 
 - name: Pull and run nginx image
   hosts: all
-  remote_user: hargovind
+  remote_user: azureuser
   tasks:
     - name: Pull nginx image
       docker_image:

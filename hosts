@@ -1,2 +1,2 @@
 [azuremachine]
-192.168.0.107
+20.193.227.199 ansible_python_interpreter=auto
