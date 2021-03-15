@@ -1,0 +1,46 @@
+pipeline {
+    
+    agent any
+    
+    stages {
+        stage('Clone Project') {
+            steps {
+                git 'https://github.com/HargovindArora/DevOpsCalculator'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'cd app/ && pip3 install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd app/ && python3 -m pytest'
+            }
+        }
+        stage('Build Docker Images') {
+            steps {
+                sh 'docker build -f "app/Dockerfile" -t hargovind04/spe_flask:latest .'
+                sh 'docker build -f "nginx/Dockerfile" -t hargovind04/spe_nginx:latest .'
+            }
+        }
+        stage('Publish Docker Images') {
+            steps {
+                withDockerRegistry([ credentialsId: "DockerID", url: "" ]) {
+                    sh 'docker push hargovind04/spe_flask:latest'
+                    sh 'docker push hargovind04/spe_nginx:latest'
+                }
+            }
+        }
+        stage('Clean Docker Images') {
+            steps {
+                sh 'docker rmi -f $(docker images -a -q)'
+            }
+        }
+        stage('Deploy and Run Image on Remote Server'){
+            steps {
+                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'hosts', playbook: 'playbook.yml', sudoUser: null
+            }
+        }
+    }
+}
